@@ -1,0 +1,39 @@
+0.0 - Beta Release - At this point, Cobble just populates its tables in the database.
+  The only UI is a dashboard form with a button to refresh the tables.
+0.1 - Fixed bug in cobble_page.php and cobble_page_theme.php.  Trying to call a member
+  function from inside the class without $this->   For some reason this was not throwing
+  errors for me, but did for JL - probably a difference in php.ini settings...
+0.2 - Added a basic UI that allows a query to be selected and run with the results displayed
+  in a table on the page.  Added ptHandle and ptName to the schema.
+1.0 - Added an 'Export Results as CSV' button.
+1.01 - Added records to CobbleAreas table for Global Scrapbooks and Layouts.
+  This made it possible to fix the counts in the Areas query and correct the results
+  of the "Blocks Ref'ing Areas not in Templates' queries.
+1.02 - Refreshing Cobble tables is added as a Job when Cobble is installed or updated.
+1.03 - Fixed bugs preventing refresh due to case sensitive table names in linux
+  (bug was present in 1.01 and 1.02)
+1.04 - Added 'Installed?' column to Themes query, Added 'Page Handle or Type' column to Areas query.
+1.05 - Removed 'Refresh Tables' button and job.  Refresh is now done whenever the Cobble
+  button on the dashboard is clicked.  Separated 'Overview Queries' from 'Diagnostic Queries'.
+  Added some additional diagnostic queries.
+1.06 - Improved the Page Types query so that SP handle conflict doesn't show as 'yes' if the
+  single page has its theme overridden in site_theme_paths or theme_paths.  Previously all
+  page types with handle 'full' were showing as 'yes' because of the core single page named 'full'
+  Also added a new diagnostic query to show any SP handle conflicts.
+1.07 - Coerced collation to utf8_general_ci in CobblePageType->updateSinglepageFlags()
+  to prevent error if Collections.cHandle and CobblePageTypes.ctHandle
+  happen to be set to different collations.
+1.08 - Cleaned up the UI a little bit.  The query description and table header are now shown
+  even if the query returns no results.  The description is necessary for the user to be able
+  to understand what the empty result set means.  The table header is referred to by the
+  description.
+1.09 - Added collation coersion to more queries (I think I've got them all fixed)
+  In CobblePages, a new function was added to update the template paths of pages assigned to
+  theme-independent page types.  This fixed part of the problem Andrew was seeing.
+  The CobbleAreas table now includes all areas defined in the database as well as those defined
+  in templates.  This allowed the "Blocks Ref'ing areas not in..." queries to be improved.
+  It also necessitated changes to the Areas query, since we don't want to show orphaned areas there.
+  Fixed a tricky issue that can occur if a package installs a page type, then is uninstalled
+  with pages left over that still reference the original page type.  It will be rendered by
+  the default template in the page's theme.
+  
