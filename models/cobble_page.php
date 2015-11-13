@@ -227,13 +227,14 @@ class CobblePage extends Object
     {
         $db = Loader::db();
 
-        $q = "select P.cID, P.ctID, P.cIsTemplate, P.cFilename, P.pkgID, P.ptID, PKG.pkgHandle, PP.cPath, CT.ctID as ctID_ct, CT.ctHandle, CPT.ptDirectory, CPT.cblPtID, CV.cvHandle as cHandle, " .
-            " P.cPointerID, P.cPointerExternalLink  from " .
-            " ((((Pages P left join PagePaths PP on P.cID = PP.cID ) " .
-            " left join PageTypes CT on P.ctID = CT.ctID ) " .
-            " left join CobblePageThemes CPT on P.ptID = CPT.ptID and CPT.isOverridden = 0) " .
-            " left join CollectionVersions CV on P.cID = CV.cID and CV.cvIsApproved = 1) " .
-            " left join Packages PKG on P.pkgID = PKG.pkgID where (PP.ppIsCanonical = 1 or PP.cPath is NULL) ";
+        $q = "SELECT P.cID, CV.ctID, P.cIsTemplate, P.cFilename, P.pkgID, CV.ptID, PKG.pkgHandle, PP.cPath, CT.ctID AS ctID_ct, CT.ctHandle, CPT.ptDirectory, CPT.cblPtID, CV.cvHandle AS cHandle, P.cPointerID, P.cPointerExternalLink
+            FROM Pages P
+            LEFT JOIN PagePaths PP ON P.cID = PP.cID
+            LEFT JOIN CollectionVersions CV ON P.cID = CV.cID AND CV.cvIsApproved = 1
+            LEFT JOIN PageTypes CT ON CV.ctID = CT.ctID
+            LEFT JOIN CobblePageThemes CPT ON CV.ptID = CPT.ptID AND CPT.isOverridden = 0
+            LEFT JOIN Packages PKG ON P.pkgID = PKG.pkgID
+            WHERE PP.ppIsCanonical = 1 OR PP.cPath IS NULL";
         $db->query($q);
         $r = $db->query($q);
         while ($row = $r->fetchRow()) {

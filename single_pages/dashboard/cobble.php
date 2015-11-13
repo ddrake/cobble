@@ -1,7 +1,7 @@
 <?php defined('C5_EXECUTE') or die(_("Access Denied.")); ?>
 
-<h1><span><?php echo $title ?></span></h1>
-<div class="ccm-dashboard-inner">
+<?php echo Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper($title, false, false, false); ?>
+<div class="ccm-pane-body">
     <form method="post" id="ccm-cobble-query" action="<?php echo $this->action('view') ?>">
         <table border="0" cellpadding="3">
             <tr>
@@ -38,7 +38,7 @@
         </div>
         <br/>
 
-        <table border="0" cellspacing="1" cellpadding="0" class="grid-list">
+        <table border="0" cellspacing="1" cellpadding="0" class="table table-bordered table-striped">
             <tr>
                 <?php foreach ($colHeads as $heading) { ?>
                     <td class="subheader"><?php echo $heading ?></td>
@@ -54,5 +54,5 @@
         </table>
     <?php } ?>
     <br/>
-
 </div>
+<?php echo Loader::helper('concrete/dashboard')->getDashboardPaneFooterWrapper(false); ?>

@@ -207,8 +207,8 @@ class CobblePageType extends Object
     {
         $db = Loader::db();
         $q = "update CobblePageTypes set isSinglePageHandle = 1 where ctHandle collate utf8_general_ci in (" .
-            "select cHandle collate utf8_general_ci from Collections inner join Pages on Collections.cID = Pages.cID where Pages.ctID = 0)";
-        $db->query($q, $v);
+            "select cHandle collate utf8_general_ci from Collections inner join Pages on Collections.cID = Pages.cID inner join CollectionVersions on CollectionVersions.cID = Pages.cID and CollectionVersions.cvIsApproved=1 where CollectionVersions.ctID = 0)";
+        $db->query($q);
     }
 
     /****************************************************/

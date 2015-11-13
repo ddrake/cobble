@@ -133,6 +133,9 @@ class CobblePageTheme extends Object
 
     function readThemeInfo($tp)
     {
+        if (!file_exists($tp . '/' . 'description.txt')) {
+            return false;
+        }
         // read the template into a string
         $input = file_get_contents($tp . '/' . 'description.txt');
         $ar = preg_split('/[\n\r]+/', $input);
