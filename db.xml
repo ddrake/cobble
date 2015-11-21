@@ -1,59 +1,141 @@
 <?xml version="1.0"?>
 <schema version="0.3">
-	<table name="CobblePageThemes">
-		<field name="cblPtID" type="I"><KEY /><AUTOINCREMENT /><UNSIGNED /></field>
-		<field name="ptID" type="I"><UNSIGNED /></field>
-		<field name="ptHandle" type="C" size="64" />
-		<field name="ptName" type="C" size="255" />
-		<field name="ptDescription" type="X" size="2000" />
-		<field name="ptDirectory" type="C" size="255" />
-		<field name="pkgHandle" type="C" size="64" />
-		<field name="isOverridden" type="L"><NOTNULL /><DEFAULT value="0" /></field>
-		<field name="isSiteTheme" type="L"><NOTNULL /><DEFAULT value="0" /></field>
-		<field name="isDummy" type="L"><NOTNULL /><DEFAULT value="0" /></field>
-	</table>
-	<table name="CobblePageTypes">
-		<field name="cblCtID" type="I"><KEY /><AUTOINCREMENT /><UNSIGNED /></field>
-		<field name="cblPtID" type="I"><UNSIGNED /></field>
-		<field name="ctID" type="I"><UNSIGNED /></field>
-		<field name="ctHandle" type="C" size="32" />
-		<field name="pkgHandle" type="C" size="64" />
-		<field name="ctFilePrefix" type="C" size="255" />
-		<field name="filePath" type="C" size="255" />
-		<field name="wrapperPath" type="C" size="255" />
-		<field name="isSinglePageHandle" type="L"><NOTNULL /><DEFAULT value="0" /></field>
-	</table>
-	<table name="CobblePages">
-		<field name="cblCID" type="I"><KEY /><AUTOINCREMENT /><UNSIGNED /></field>
-		<field name="cID" type="I"><UNSIGNED /></field>
-		<field name="ctID" type="I"><UNSIGNED /></field>
-		<field name="cblCtID" type="I"><UNSIGNED /></field>
-		<field name="cblPtID" type="I"><UNSIGNED /></field>
-		<field name="cHandle" type="C" size="255" />
-		<field name="cFilename" type="C" size="255" />
-		<field name="filePath" type="C" size="255" />
-		<field name="wrapperPath" type="C" size="255" />
-		<field name="isThemeFromPath" type="L"><NOTNULL /><DEFAULT value="0" /></field>
-		<field name="isSinglePage" type="L"><NOTNULL /><DEFAULT value="0" /></field>
-		<field name="isTemplate" type="L"><NOTNULL /><DEFAULT value="0" /></field>
-		<field name="isWrapperMissing" type="L"><NOTNULL /><DEFAULT value="0" /></field>
-		<field name="isFileMissing" type="L"><NOTNULL /><DEFAULT value="0" /></field>
-	</table>
-	<table name="CobbleAreas">
-		<field name="cblArID" type="I"><KEY /><AUTOINCREMENT /><UNSIGNED /></field>
-		<field name="cblTaID" type="I"><UNSIGNED /></field>
-		<field name="cblCID" type="I"><UNSIGNED /></field>
-		<field name="arID" type="I"><UNSIGNED /></field>
-		<field name="cID" type="I"><UNSIGNED /></field>
-		<field name="arHandle" type="C" size="255" />
-		<field name="isHandleDuplicated" type="L"><NOTNULL /><DEFAULT value="0" /></field>
-		<field name="isGlobalScrapbook" type="L"><NOTNULL /><DEFAULT value="0" /></field>
-	</table>
-	<table name="CobbleTemplateAreas">
-		<field name="cblTaID" type="I"><KEY /><AUTOINCREMENT /><UNSIGNED /></field>
-		<field name="arHandle" type="C" size="255"><NOTNULL />	</field>
-		<field name="filePath" type="C" size="255"><NOTNULL />	</field>
-		<field name="globalTemplatePath" type="C" size="255"></field>
-		<field name="isGlobal" type="L"><NOTNULL /><DEFAULT value="0" /></field>
-	</table>
+    <table name="CobblePageThemes">
+        <field name="cblPtID" type="I">
+            <KEY/>
+            <AUTOINCREMENT/>
+            <UNSIGNED/>
+        </field>
+        <field name="ptID" type="I">
+            <UNSIGNED/>
+        </field>
+        <field name="ptHandle" type="C" size="64"/>
+        <field name="ptName" type="C" size="255"/>
+        <field name="ptDescription" type="X" size="2000"/>
+        <field name="ptDirectory" type="C" size="255"/>
+        <field name="pkgHandle" type="C" size="64"/>
+        <field name="isOverridden" type="L">
+            <NOTNULL/>
+            <DEFAULT value="0"/>
+        </field>
+        <field name="isSiteTheme" type="L">
+            <NOTNULL/>
+            <DEFAULT value="0"/>
+        </field>
+        <field name="isDummy" type="L">
+            <NOTNULL/>
+            <DEFAULT value="0"/>
+        </field>
+    </table>
+    <table name="CobblePageTypes">
+        <field name="cblCtID" type="I">
+            <KEY/>
+            <AUTOINCREMENT/>
+            <UNSIGNED/>
+        </field>
+        <field name="cblPtID" type="I">
+            <UNSIGNED/>
+        </field>
+        <field name="ctID" type="I">
+            <UNSIGNED/>
+        </field>
+        <field name="ctHandle" type="C" size="32"/>
+        <field name="pkgHandle" type="C" size="64"/>
+        <field name="ctFilePrefix" type="C" size="255"/>
+        <field name="filePath" type="C" size="255"/>
+        <field name="wrapperPath" type="C" size="255"/>
+        <field name="isSinglePageHandle" type="L">
+            <NOTNULL/>
+            <DEFAULT value="0"/>
+        </field>
+    </table>
+    <table name="CobblePages">
+        <field name="cblCID" type="I">
+            <KEY/>
+            <AUTOINCREMENT/>
+            <UNSIGNED/>
+        </field>
+        <field name="cID" type="I">
+            <UNSIGNED/>
+        </field>
+        <field name="ctID" type="I">
+            <UNSIGNED/>
+        </field>
+        <field name="cblCtID" type="I">
+            <UNSIGNED/>
+        </field>
+        <field name="cblPtID" type="I">
+            <UNSIGNED/>
+        </field>
+        <field name="cHandle" type="C" size="255"/>
+        <field name="cFilename" type="C" size="255"/>
+        <field name="filePath" type="C" size="255"/>
+        <field name="wrapperPath" type="C" size="255"/>
+        <field name="isThemeFromPath" type="L">
+            <NOTNULL/>
+            <DEFAULT value="0"/>
+        </field>
+        <field name="isSinglePage" type="L">
+            <NOTNULL/>
+            <DEFAULT value="0"/>
+        </field>
+        <field name="isTemplate" type="L">
+            <NOTNULL/>
+            <DEFAULT value="0"/>
+        </field>
+        <field name="isWrapperMissing" type="L">
+            <NOTNULL/>
+            <DEFAULT value="0"/>
+        </field>
+        <field name="isFileMissing" type="L">
+            <NOTNULL/>
+            <DEFAULT value="0"/>
+        </field>
+    </table>
+    <table name="CobbleAreas">
+        <field name="cblArID" type="I">
+            <KEY/>
+            <AUTOINCREMENT/>
+            <UNSIGNED/>
+        </field>
+        <field name="cblTaID" type="I">
+            <UNSIGNED/>
+        </field>
+        <field name="cblCID" type="I">
+            <UNSIGNED/>
+        </field>
+        <field name="arID" type="I">
+            <UNSIGNED/>
+        </field>
+        <field name="cID" type="I">
+            <UNSIGNED/>
+        </field>
+        <field name="arHandle" type="C" size="255"/>
+        <field name="isHandleDuplicated" type="L">
+            <NOTNULL/>
+            <DEFAULT value="0"/>
+        </field>
+        <field name="isGlobalScrapbook" type="L">
+            <NOTNULL/>
+            <DEFAULT value="0"/>
+        </field>
+    </table>
+    <table name="CobbleTemplateAreas">
+        <field name="cblTaID" type="I">
+            <KEY/>
+            <AUTOINCREMENT/>
+            <UNSIGNED/>
+        </field>
+        <field name="arHandle" type="C" size="255">
+            <NOTNULL/>
+        </field>
+        <field name="filePath" type="C" size="255">
+            <NOTNULL/>
+        </field>
+        <field name="globalTemplatePath" type="C" size="255"></field>
+        <field name="isGlobal" type="L">
+            <NOTNULL/>
+            <DEFAULT value="0"/>
+        </field>
+    </table>
 </schema>
